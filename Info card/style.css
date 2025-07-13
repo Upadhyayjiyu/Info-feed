@@ -1,0 +1,192 @@
+:root {
+  --bg-light: #f4f4f4;
+  --card-bg-light: #fff;
+  --text-light: #333;
+  --accent: #007bff;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --favorite-color: #e74c3c;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  --bg-light: #181818;
+  --card-bg-light: #242424;
+  --text-light: #eee;
+}
+
+header {
+  background: var(--card-bg-light);
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 3px 6px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#darkModeToggle {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  width: 300px;
+  perspective: 1000px;
+  cursor: grab;
+  position: relative;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  background: var(--card-bg-light);
+  border-radius: 16px;
+  box-shadow: 0 10px 20px var(--shadow);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.card-front img {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.card-front {
+  justify-content: flex-start;
+  position: relative;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+  user-select: none;
+}
+
+.favorite-icon.active {
+  color: var(--favorite-color);
+}
+
+.card-front h2 {
+  margin: 12px 0 8px 0;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.toggle-details-btn {
+  margin-top: auto;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+}
+
+.card-back h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.details-list {
+  list-style: none;
+  padding-left: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.details-list li {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+
+.rating-bar {
+  background-color: #ddd;
+  border-radius: 8px;
+  height: 14px;
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.rating-fill {
+  height: 100%;
+  background-color: var(--accent);
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+  border-radius: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.actions button {
+  background-color: var(--accent);
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.actions button:hover {
+  background-color: #0056b3;
+}
